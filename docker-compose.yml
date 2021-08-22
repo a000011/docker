@@ -1,0 +1,23 @@
+version: "3"
+services:
+  docker_mysql:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: "gas-trek"
+      MYSQL_USER: "root"
+      MYSQL_PASSWORD: "password"
+      MYSQL_ROOT_PASSWORD: "password"
+    restart: always
+    volumes:
+      - ./src/docker_mysql:/var/lib/mysql
+  docker_apache:
+    image: php:7.4-apache
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src/docker_apache:/var/www/html
+  # volumes:
+  #   - ./src:/var/lib/mysql
+  #   - ./src:/usr/local/apache2/htdocs
